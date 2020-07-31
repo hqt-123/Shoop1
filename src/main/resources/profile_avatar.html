@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>上传头像</title>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="lib/cropperjs/cropper.min.css">
+	<style>
+		.img-container, .img-preview {
+			background-color: #f7f7f7;
+			text-align: center;
+			width: 100%;
+		}
+
+		.img-container {
+			height: 400px;
+			overflow: hidden;
+		}
+
+		.img-container > img, .img-preview > img {
+			max-width: 100%;
+		}
+
+		.img-preview {
+			float: left;
+			margin-bottom: 0.5rem;
+			margin-right: 0.5rem;
+			overflow: hidden;
+		}
+
+		.preview-lg {
+			height: 9rem;
+			width: 16rem;
+		}
+
+		.preview-md {
+			height: 4.5rem;
+			width: 8rem;
+		}
+
+		.preview-sm {
+			height: 2.25rem;
+			width: 4rem;
+		}
+
+		.preview-xs {
+			height: 1.125rem;
+			width: 2rem;
+			margin-right: 0;
+		}
+
+		.progress {
+			display: none;
+		}
+	</style>
+</head>
+<body class="">
+
+<div class="container-fluid">
+	<br>
+	<div class="row">
+		<div class="col-sm-8">
+			<div class="img-container">
+				<img id="img-avatar" src="images/picture.jpg" alt="Picture">
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<h6>图片预览：</h6>
+			<div class="clearfix">
+				<div class="img-preview preview-lg"></div>
+				<div class="img-preview preview-md"></div>
+				<div class="img-preview preview-sm"></div>
+				<div class="img-preview preview-xs"></div>
+			</div>
+		</div>
+	</div>
+	<!-- /.row -->
+	<div class="row mt-2">
+		<div class="col-sm-8 buttons">
+			<label class="btn btn-primary mb-0" for="input-image">
+				<input type="file" class="sr-only" id="input-image" name="file" accept="image/*">
+				选择 <span class="fa fa-cloud-upload"></span>
+			</label>
+
+			<button type="button" class="btn btn-outline-primary" data-method="reset" data-option="0" title="复位">
+				<i class="fa fa-refresh"></i>
+			</button>
+			<button type="button" class="btn btn-outline-primary" data-method="zoom" data-option="0.1" title="放大">
+				<i class="fa fa-search-plus"></i>
+			</button>
+			<button type="button" class="btn btn-outline-primary" data-method="zoom" data-option="-0.1" title="缩小">
+				<i class="fa fa-search-minus"></i>
+			</button>
+			<button type="button" class="btn btn-outline-primary" data-method="rotate" data-option="-90" title="左转">
+				<i class="fa fa-rotate-left"></i>
+			</button>
+			<button type="button" class="btn btn-outline-primary" data-method="rotate" data-option="90" title="右转">
+				<i class="fa fa-rotate-right"></i>
+			</button>
+		</div>
+		<div class="col-sm-4 text-right">
+			<button type="button" class="btn btn-primary" id="submit">提交</button>
+		</div>
+	</div>
+	<!-- /.row -->
+	<div class="progress mt-2">
+		<div class="progress-bar progress-bar-striped progress-bar-animated" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+	</div>
+</div>
+<!-- /.container-fluid -->
+
+<!-- Essential javascripts for application to work-->
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+<!-- The javascript plugin to display pagination loading on top-->
+<script src="lib/cropperjs/cropper.min.js"></script>
+<!-- Page specific javascripts-->
+<script type="text/javascript">
+	let image = document.getElementById("img-avatar");
+	let input = document.getElementById("input-image");
+
+	let cropper = new Cropper(image, {
+		aspectRatio: 1, // 16 / 9,
+		viewMode: 2,
+		dragMode: "move",
+		preview: ".img-preview",
+		crop: function (e) {
+			let data = e.detail;
+			console.log(e.type);
+			console.log("dataX:", Math.round(data.x));
+			console.log("dataY:", Math.round(data.y));
+			console.log("dataHeight:", Math.round(data.height));
+			console.log("dataWidth:", Math.round(data.width));
+			console.log("dataRotate:", typeof data.rotate !== 'undefined' ? data.rotate : '');
+			console.log("dataScaleX:", typeof data.scaleX !== 'undefined' ? data.scaleX : '');
+			console.log("dataScaleY:", typeof data.scaleY !== 'undefined' ? data.scaleY : '');
+		}
+	});
+
+	$(".buttons [data-method]").click(function () {
+		let method = $(this).attr("data-method");
+		let option = $(this).attr("data-option");
+		switch (method) {
+			case "reset":
+				cropper.reset();
+				break;
+			case "zoom":
+				cropper.zoom(option);
+				break;
+			case "rotate":
+				cropper.rotate(option);
+				break;
+		}
+	});
+
+	$(input).change(function (e) {
+		let files = e.target.files;
+		let done = function (url) {
+			input.value = "";
+			image.src = url;
+		};
+		if (files && files.length > 0) {
+			let file = files[0];
+			if (URL) {
+				done(URL.createObjectURL(file));
+			} else if (FileReader) {
+				let reader = new FileReader();
+				reader.onload = function (e) {
+					done(reader.result);
+				};
+				reader.readAsDataURL(file);
+			}
+			cropper.replace(image.src);
+		}
+	});
+
+	$("#submit").click(function () {
+		if (!cropper) return false;
+		let canvas = cropper.getCroppedCanvas({
+			width: 128,
+			height: 128,
+		});
+		// let initialAvatarURL = avatar.src;
+		// avatar.src = canvas.toDataURL();
+		let $progressBar = $(".progress-bar");
+		$progressBar.width(0).attr('aria-valuenow', 0).text('0%');
+		let $progress = $(".progress");
+		$progress.show();
+		canvas.toBlob(function (blob) {
+			let formData = new FormData();
+			formData.append('avatar', blob, 'avatar.jpg');
+			formData.append('data', JSON.stringify(cropper.getData()));
+			$.ajax('https://jsonplaceholder.typicode.com/posts', {
+				method: 'POST',
+				data: formData,
+				processData: false,
+				contentType: false,
+				xhr: function () {
+					let xhr = new XMLHttpRequest();
+					xhr.upload.onprogress = function (e) {
+						let percent = '0';
+						let percentage = '0%';
+						if (e.lengthComputable) {
+							percent = Math.round((e.loaded / e.total) * 100);
+							percentage = percent + '%';
+							$progressBar.width(percentage).attr('aria-valuenow', percent).text(percentage);
+						}
+					};
+					return xhr;
+				},
+				success: function () {
+					alert('Upload success');
+				},
+				error: function () {
+					// avatar.src = initialAvatarURL;
+					alert('Upload error');
+				},
+				complete: function () {
+					$progress.hide();
+				},
+			});
+			// $.ajax end
+		});
+	});
+</script>
+
+</body>
+</html>

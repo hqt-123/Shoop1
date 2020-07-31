@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>yonghe</title>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<div class="container-fluid">
+
+	<div class="app-title">
+		<div>
+			<h1><i class="fa fa-circle-o"></i> 门店管理</h1>
+		</div>
+		<ul class="app-breadcrumb breadcrumb">
+			<li class="breadcrumb-item"><a href="welcome.html">首页</a></li>
+			<li class="breadcrumb-item active">门店管理</li>
+		</ul>
+	</div>
+
+	<div class="tile">
+
+		<p class="form-inline">
+			<input type="text" class="form-control mr-1" placeholder="门店名称">
+			<button type="button" class="btn btn-outline-primary mr-1">
+				<i class="fa fa-search"></i>搜索
+			</button>
+			<a href="door_add.html" class="btn btn-outline-success mr-1">
+				<i class="fa fa-plus-square"></i>新增
+			</a>
+		</p>
+
+		<div class="table-responsive">
+			<table class="table table-bordered">
+				<thead>
+				<tr>
+					<th>序号</th>
+					<th>门店名称</th>
+					<th>联系电话</th>
+					<th>门店地址</th>
+					<th width="100"></th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>1</td>
+					<td>永和大王(北三环西路店)</td>
+					<td>010-62112313</td>
+					<td>北三环西路甲18号院-1号大钟寺中坤广场d座</td>
+					<td>
+						<a class="text-info detail" href="door_update.html" title="修改"><i class="fa fa-lg fa-edit"></i></a>
+						<a class="text-danger remove" href="javascript:void(0)" title="删除"><i class="fa fa-lg fa-trash"></i></a>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<!--分页-->
+		<ul class="pagination">
+			<li class="page-item disabled"><a class="page-link">«</a></li>
+			<li class="page-item active"><a class="page-link">1</a></li>
+			<li class="page-item"><a class="page-link">»</a></li>
+		</ul>
+
+	</div>
+	<!-- /.tile -->
+</div>
+<!-- /.container-fluid -->
+
+<!-- Essential javascripts for application to work-->
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+<!-- Page specific javascripts-->
+<script src="js/plugins/sweetalert.min.js"></script>
+<script>
+	$(".remove").click(function() {
+		swal({
+			text: "删除操作无法恢复，您确定要删除吗?",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true
+		}).then(function(isConfirm) {
+			if (isConfirm)
+				swal("", "您选择的记录已被删除!", "success", {timer: 2000});
+		});
+	});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>yonghe</title>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<div class="container-fluid">
+
+	<div class="app-title">
+		<div>
+			<h1><i class="fa fa-circle-o"></i> 菜品分类</h1>
+		</div>
+		<ul class="app-breadcrumb breadcrumb">
+			<li class="breadcrumb-item"><a href="welcome.html">首页</a></li>
+			<li class="breadcrumb-item active">菜品分类</li>
+		</ul>
+	</div>
+
+	<div class="tile">
+		<!-- 工具栏 -->
+		<p id="toolbar" class="form-inline">
+			<input type="text" class="form-control mr-1" placeholder="分类名称">
+			<button type="button" class="btn btn-outline-primary mr-1">
+				<i class="fa fa-search"></i>搜索
+			</button>
+			<a href="dishesCat_add.html" class="btn btn-outline-success mr-1">
+				<i class="fa fa-plus-square"></i>新增
+			</a>
+		</p>
+		<!-- 数据表格 -->
+		<table id="table" class="table table-bordered table-hover">
+			<thead class="">
+			<tr>
+				<th>序号</th>
+				<th>父级分类</th>
+				<th>分类名称</th>
+				<th>分类状态</th>
+				<th>排列序号</th>
+				<th>是否为父分类</th>
+				<th>创建时间</th>
+				<th>修改时间</th>
+				<th width="100">操作</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>1</td>
+				<td>-</td>
+				<td>火锅</td>
+				<td>正常</td>
+				<td>1</td>
+				<td>否</td>
+				<td>2020-03-15 19:47:15</td>
+				<td>2020-03-15 19:47:15</td>
+				<td>
+					<a class="text-info update" href="dishesCat_update.html" title="修改"><i class="fa fa-lg fa-edit"></i></a>
+					<a class="text-danger remove" href="javascript:void(0)" title="删除"><i class="fa fa-lg fa-trash"></i></a>
+				</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>-</td>
+				<td>凉菜</td>
+				<td>正常</td>
+				<td>2</td>
+				<td>否</td>
+				<td>2020-03-15 19:47:38</td>
+				<td>2020-03-15 19:56:46</td>
+				<td>
+					<a class="text-info update" href="dishesCat_update.html" title="修改"><i class="fa fa-lg fa-edit"></i></a>
+					<a class="text-danger remove" href="javascript:void(0)" title="删除"><i class="fa fa-lg fa-trash"></i></a>
+				</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>-</td>
+				<td>小炒</td>
+				<td>正常</td>
+				<td>3</td>
+				<td>否</td>
+				<td>2020-03-15 19:47:46</td>
+				<td>2020-03-15 19:57:04</td>
+				<td>
+					<a class="text-info update" href="dishesCat_update.html" title="修改"><i class="fa fa-lg fa-edit"></i></a>
+					<a class="text-danger remove" href="javascript:void(0)" title="删除"><i class="fa fa-lg fa-trash"></i></a>
+				</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>-</td>
+				<td>田园时蔬</td>
+				<td>正常</td>
+				<td>4</td>
+				<td>否</td>
+				<td>2020-03-15 19:47:59</td>
+				<td>2020-03-15 20:00:07</td>
+				<td>
+					<a class="text-info update" href="dishesCat_update.html" title="修改"><i class="fa fa-lg fa-edit"></i></a>
+					<a class="text-danger remove" href="javascript:void(0)" title="删除"><i class="fa fa-lg fa-trash"></i></a>
+				</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>-</td>
+				<td>酒水</td>
+				<td>正常</td>
+				<td>5</td>
+				<td>否</td>
+				<td>2020-03-15 19:48:07</td>
+				<td>2020-03-15 19:48:07</td>
+				<td>
+					<a class="text-info update" href="dishesCat_update.html" title="修改"><i class="fa fa-lg fa-edit"></i></a>
+					<a class="text-danger remove" href="javascript:void(0)" title="删除"><i class="fa fa-lg fa-trash"></i></a>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- /.tile -->
+</div>
+<!-- /.container-fluid -->
+
+<!-- Essential javascripts for application to work-->
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+<!-- Page specific javascripts-->
+<script src="js/plugins/sweetalert.min.js"></script>
+<script>
+	$(".remove").click(function () {
+		swal({
+			text: "删除操作无法恢复，您确定要删除吗?",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true
+		}).then(function (isConfirm) {
+			if (isConfirm)
+				swal("", "您选择的记录已被删除!", "success", {timer: 2000});
+		});
+	});
+</script>
+
+</body>
+</html>

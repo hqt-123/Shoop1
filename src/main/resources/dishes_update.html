@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>yonghe</title>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="lib/dropify/css/dropify.min.css">
+</head>
+<body>
+
+<div class="container-fluid">
+
+	<div class="app-title">
+		<div>
+			<h1><i class="fa fa-circle-o"></i> 修改菜品</h1>
+		</div>
+		<ul class="app-breadcrumb breadcrumb">
+			<li class="breadcrumb-item"><a href="welcome.html">首页</a></li>
+			<li class="breadcrumb-item"><a href="dishes_list.html">菜品管理</a></li>
+			<li class="breadcrumb-item active">修改菜品</li>
+		</ul>
+	</div>
+
+	<div class="tile">
+
+		<form id="form" action="" method="post">
+			<!-- 隐藏表单域 -->
+			<input type="hidden" name="id" value="">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label class="control-label">菜品标题</label>
+					<input class="form-control" type="text" name="title" value="黄焖鸡" required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label class="control-label">菜品价格</label>
+					<input class="form-control" type="text" name="price" value="13" required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label class="control-label">菜品图片</label>
+					<input type="hidden" name="image" value="">
+					<input type="file" name="file" class="dropify"
+					       data-height="100" data-allowed-file-extensions="jpg jpeg png gif" data-max-file-size="2M" required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label class="control-label">菜品状态</label>
+					<div>
+						<div class="animated-radio-button form-check-inline">
+							<label>
+								<input type="radio" name="status" value="1" checked>
+								<span class="label-text">正常</span>
+							</label>
+						</div>
+						<div class="animated-radio-button form-check-inline">
+							<label>
+								<input type="radio" name="status" value="2">
+								<span class="label-text">停售</span>
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label class="control-label">菜品分类</label>
+					<select class="form-control" name="cid" required>
+						<option value="">-- 选择分类 --</option>
+						<option value="1" selected>火锅</option>
+					</select>
+				</div>
+			</div>
+			<hr>
+			<div class="form-group">
+				<button class="btn btn-primary" type="submit">
+					<i class="fa fa-fw fa-lg fa-check-circle"></i>保存
+				</button>
+				&nbsp;&nbsp;
+				<a class="btn btn-secondary" href="javascript:history.back()">
+					<i class="fa fa-fw fa-lg fa-times-circle"></i>取消
+				</a>
+			</div>
+		</form>
+
+	</div>
+	<!-- /.tile -->
+</div>
+<!-- /.container-fluid -->
+
+<!-- Essential javascripts for application to work-->
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+<!-- Page specific javascripts-->
+<script src="js/plugins/jquery.validate.min.js"></script>
+<script src="lib/dropify/js/dropify.min.js"></script>
+<script>
+	let $form = $("#form");
+
+	// 验证表单
+	$form.validate();
+
+	// 上传图片
+	let drEvent = $(".dropify").dropify();
+
+	// 改变时回调
+	drEvent.on("change", function () {
+		if (!this.value)
+			return false;
+		let formData = new FormData();
+		formData.append("file", this.files[0]);
+		// 异步上传图片
+		// $.ajax({
+		// 	"url": "/image/upload",
+		// 	"data": formData,
+		// 	"type": "POST",
+		// 	"dataType": "json",
+		// 	"processData": false,
+		// 	"contentType": false,
+		// 	"success": function (res) {
+		// 		if (res.state === 1) {
+		// 			$form.find("[name=image]").val(res.data);
+		// 		} else {
+		// 			top.toastr.error(res.message);
+		// 		}
+		// 	}
+		// });
+	});
+
+	// 移除前回调
+	drEvent.on('dropify.beforeClear', function (event, element) {
+		return confirm("您确认要移除该图片吗?");
+	});
+</script>
+
+</body>
+</html>

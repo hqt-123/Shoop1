@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>yonghe</title>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<div class="container-fluid">
+
+	<div class="app-title">
+		<div>
+			<h1><i class="fa fa-circle-o"></i> 新增订单</h1>
+		</div>
+		<ul class="app-breadcrumb breadcrumb">
+			<li class="breadcrumb-item"><a href="welcome.html">首页</a></li>
+			<li class="breadcrumb-item"><a href="order_list.html">订单管理</a></li>
+			<li class="breadcrumb-item active">新增订单</li>
+		</ul>
+	</div>
+
+	<div class="tile">
+
+		<form id="form" action="" method="post">
+			<div class="form-row">
+				<div class="form-group col-md-10">
+					<label class="control-label">所属门店</label>
+					<select class="form-control" name="doorId" required>
+						<option value="">-- 请选择 --</option>
+						<option value="1">永和大王(北三环西路店)</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-5">
+					<label class="control-label">订单编号</label>
+					<input class="form-control" type="text" name="orderNo" required>
+				</div>
+				<div class="form-group col-md-5">
+					<label class="control-label">订单类型</label>
+					<input class="form-control" type="text" name="orderType" required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-5">
+					<label class="control-label">用餐人数</label>
+					<input class="form-control" type="number" name="pnum" required>
+				</div>
+				<div class="form-group col-md-5">
+					<label class="control-label">收银员</label>
+					<input class="form-control" type="text" name="cashier" required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-5">
+					<label class="control-label">支付方式</label>
+					<input class="form-control" type="text" name="payType" required>
+				</div>
+				<div class="form-group col-md-5">
+					<label class="control-label">支付金额</label>
+					<input class="form-control" type="number" name="price" required>
+				</div>
+			</div>
+			<hr>
+			<div class="form-group">
+				<button class="btn btn-primary" type="submit">
+					<i class="fa fa-fw fa-lg fa-check-circle"></i>保存
+				</button>
+				&nbsp;&nbsp;
+				<a class="btn btn-secondary" href="javascript:history.back()">
+					<i class="fa fa-fw fa-lg fa-times-circle"></i>取消
+				</a>
+			</div>
+		</form>
+
+	</div>
+	<!-- /.tile -->
+</div>
+<!-- /.container-fluid -->
+
+<!-- Essential javascripts for application to work-->
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+<!-- Page specific javascripts-->
+<script src="js/plugins/jquery.validate.min.js"></script>
+<script>
+	// 表单验证
+	$("#form").validate();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>yonghe</title>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<div class="container-fluid">
+
+	<div class="app-title">
+		<div>
+			<h1><i class="fa fa-circle-o"></i> 菜品管理</h1>
+		</div>
+		<ul class="app-breadcrumb breadcrumb">
+			<li class="breadcrumb-item"><a href="welcome.html">首页</a></li>
+			<li class="breadcrumb-item active">菜品管理</li>
+		</ul>
+	</div>
+
+	<div class="tile">
+		<!-- 工具栏 -->
+		<p id="toolbar" class="form-inline">
+			<input type="text" class="form-control mr-1" placeholder="菜品标题">
+			<select class="form-control mr-1">
+				<option value="">-- 菜品分类 --</option>
+			</select>
+			<button type="button" class="btn btn-outline-primary mr-1">
+				<i class="fa fa-search"></i>搜索
+			</button>
+			<a href="dishes_add.html" class="btn btn-outline-success mr-1">
+				<i class="fa fa-plus-square"></i>新增
+			</a>
+		</p>
+		<!-- 数据表格 -->
+		<table id="table" class="table table-bordered table-hover">
+			<thead class="">
+			<tr>
+				<th>序号</th>
+				<th>菜品标题</th>
+				<th>菜品价格</th>
+				<th>菜品图片</th>
+				<th>菜品状态</th>
+				<th>菜品分类</th>
+				<th>创建时间</th>
+				<th>修改时间</th>
+				<th width="100">操作</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>1</td>
+				<td>黄焖鸡</td>
+				<td>13</td>
+				<td><img src="images/dishes01.jpg" height="50" alt=""></td>
+				<td>停售</td>
+				<td>火锅</td>
+				<td>2020-03-15 20:05:09</td>
+				<td>2020-03-21 00:01:03</td>
+				<td>
+					<a class="text-info update" href="dishes_update.html" title="修改"><i class="fa fa-lg fa-edit"></i></a>
+					<a class="text-danger remove" href="javascript:void(0)" title="删除"><i class="fa fa-lg fa-trash"></i></a>
+				</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>土豆焖鸡</td>
+				<td>15</td>
+				<td><img src="images/dishes02.jpg" height="50" alt=""></td>
+				<td>正常</td>
+				<td>小炒</td>
+				<td>2020-03-15 03:20:55</td>
+				<td>2020-03-21 00:01:21</td>
+				<td>
+					<a class="text-info update" href="dishes_update.html" title="修改"><i class="fa fa-lg fa-edit"></i></a>
+					<a class="text-danger remove" href="javascript:void(0)" title="删除"><i class="fa fa-lg fa-trash"></i></a>
+				</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>青椒牛肉</td>
+				<td>18</td>
+				<td><img src="images/dishes03.jpg" height="50" alt=""></td>
+				<td>正常</td>
+				<td>小炒</td>
+				<td>2020-03-15 20:05:51</td>
+				<td>2020-03-21 00:10:06</td>
+				<td>
+					<a class="text-info update" href="dishes_update.html" title="修改"><i class="fa fa-lg fa-edit"></i></a>
+					<a class="text-danger remove" href="javascript:void(0)" title="删除"><i class="fa fa-lg fa-trash"></i></a>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- /.tile -->
+</div>
+<!-- /.container-fluid -->
+
+<!-- Essential javascripts for application to work-->
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+<!-- Page specific javascripts-->
+<script src="js/plugins/sweetalert.min.js"></script>
+<script>
+	$(".remove").click(function () {
+		swal({
+			text: "删除操作无法恢复，您确定要删除吗?",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true
+		}).then(function (isConfirm) {
+			if (isConfirm)
+				swal("", "您选择的记录已被删除!", "success", {timer: 2000});
+		});
+	});
+</script>
+
+</body>
+</html>
