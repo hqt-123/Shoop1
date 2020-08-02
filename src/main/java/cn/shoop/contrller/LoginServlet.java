@@ -19,7 +19,13 @@ public class LoginServlet extends HttpServlet {
         //获取参数
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        System.out.println(username + ":" + password);
+        String phone = request.getParameter("phone");
+        String email = request.getParameter("email");
+        String gender = request.getParameter("gender");
+        String  avater = request.getParameter("avater");
+        String created = request.getParameter("created");
+        String updated = request.getParameter("updated");
+        System.out.println(username + ":" + password+":"+phone+":"+email+":"+gender+":"+avater+":"+created+":"+updated);
         //创建Dao并调用login方法
         UserDao dao = new UserDao();
         User user = dao.login(username, password);

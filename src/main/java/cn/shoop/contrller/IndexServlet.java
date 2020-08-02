@@ -16,6 +16,6 @@ public class IndexServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Context context = new Context();
-        ThUtils.print("index.html", context, response);
+        ThUtils.print("welcome.html", context, response);
     }
 }

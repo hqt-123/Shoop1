@@ -31,4 +31,12 @@
 		<servlet-name>IndexServlet</servlet-name>
 		<url-pattern>/IndexServlet</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>PasswordServlet</servlet-name>
+		<servlet-class>cn.shoop.contrller.PasswordServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PasswordServlet</servlet-name>
+		<url-pattern>/PasswordServlet</url-pattern>
+	</servlet-mapping>
 </web-app>
