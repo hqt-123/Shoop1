@@ -52,7 +52,7 @@ public class UserDao {
                 String avater = rs.getString(6);
                 String created = rs.getString(7);
                 String updated = rs.getString(8);
-                return  new User(id,username,password,phone,email,gender,avater,created,updated);
+                 return new User(id,username,password,phone,email,gender,avater,created,updated);
 
 
             }

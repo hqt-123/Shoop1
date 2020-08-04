@@ -23,7 +23,10 @@ public class PasswordServlet extends HttpServlet {
 
         UserDao dao  = new UserDao();
         User user =  dao.password(email);
-        System.out.println(user);
+        if (email!=null){
+            System.out.println("yes");
+            ThUtils.print("password.html",context,response);
+        }
 //        List<User> list = dao.password(email);
 //        System.out.println(list);
 //        if (email == null){
@@ -31,11 +34,10 @@ public class PasswordServlet extends HttpServlet {
 //        }else {
 //            System.out.println("方法");
 //        }
-        if (email != null) {
 
             }
         }
-    }
+
 
 
 
